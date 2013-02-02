@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git://github.com/neoziro/on-mange-quoi.git"
   },
+  "scripts": {
+    "install": "bower install"
+  },
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "dependencies": {
     "express": "~3.1.0",
@@ -13,6 +16,7 @@
     "hogan.js": "~2.0.0"
   },
   "devDependencies": {
-    "less": "~1.3.3"
+    "less": "~1.3.3",
+    "bower": "~0.7.0"
   }
 }
