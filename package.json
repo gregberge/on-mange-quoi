@@ -1,0 +1,10 @@
+{
+  "name": "on-mange-quoi",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/neoziro/on-mange-quoi.git"
+  },
+  "author": "Greg Bergé <berge.greg@gmail.com>"
+}
