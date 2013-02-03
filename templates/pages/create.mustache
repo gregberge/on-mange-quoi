@@ -3,7 +3,7 @@
 <form>
   <div class="venues">
   {{#venues}}
-  <label class="venue clearfix">
+  <label class="venue clearfix" data-name="{{venue.name}}" data-foursquare-id="{{venue.id}}">
     <div class="checkbox">
       <input type="checkbox" name="{{venue.id}}">
     </div>

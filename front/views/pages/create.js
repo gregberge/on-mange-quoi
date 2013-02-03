@@ -1,6 +1,6 @@
 define(
-  ['lib/views/page', 'text!templates/pages/create.mustache'],
-  function(PageView, template) {
+  ['underscore', 'jquery', 'lib/views/page', 'text!templates/pages/create.mustache'],
+  function(_, $, PageView, template) {
 
     var View = PageView.extend({
 
@@ -22,6 +22,27 @@ define(
         else {
           this.$('.next-step').show();
         }
+
+        this.$('form').on('submit', _.bind(this.submitVenues, this));
+      },
+
+      submitVenues: function () {
+        var checkedVenues = this.$('.venue [type=checkbox]:checked'),
+        data = {venues: []};
+
+        checkedVenues.each(function () {
+          var venue = $(this).parents('.venue');
+          data.venues.push({
+            name: venue.data('name'),
+            foursquareId: venue.data('foursquare-id')
+          });
+        });
+
+        $.post('/api/food-meeting', data).then(function (data) {
+          console.log(data);
+        });
+
+        return false;
       },
 
 

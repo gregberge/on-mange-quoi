@@ -10,12 +10,13 @@ route = {
   add: function (req, res) {
     var foodMeeting;
 
+    console.log(req.body);
+
     if (req.body.venues && req.body.venues.length) {
 
       foodMeeting = new FoodMeeting();
 
       req.body.venues.forEach(function (venue) {
-        venue = JSON.parse(venue);
         foodMeeting.venues.push(venue);
       });
 
