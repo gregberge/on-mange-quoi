@@ -29,7 +29,7 @@ define(
         var self = this;
         navigator.geolocation.getCurrentPosition(function (position) {
           var data = {ll: position.coords.latitude + ',' + position.coords.longitude};
-          $.get('/api/venues', data).then(function (data) {
+          $.get('/api/foursquare-venue', data).then(function (data) {
             self.venues = data.response.groups[0].items;
             console.log(self.venues);
             self.trigger('load:venues');
