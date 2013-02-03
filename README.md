@@ -1,3 +1,3 @@
-# On mange quoi ?
+# Ou on mange ?
 
 J'en sais rien !
