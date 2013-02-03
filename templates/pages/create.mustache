@@ -1,0 +1,28 @@
+<p>Sélectionnez un ou plusieurs restaurants :</p>
+
+<form>
+  <div class="venues">
+  {{#venues}}
+  <label class="venue clearfix">
+    <div class="checkbox">
+      <input type="checkbox" name="{{venue.id}}">
+    </div>
+    <div class="venue-icon">
+      {{#venue.categories}}
+      <img class="picture" src="{{icon.prefix}}bg_88{{icon.suffix}}" width="32" height="32">
+      {{/venue.categories}}
+      <span class="rating">
+        {{venue.rating}}
+        {{^venue.rating}}-{{/venue.rating}}
+      </span>
+    </div>
+    <div class="venue-details">
+      <div class="name">{{venue.name}}</div>
+      <div class="address">{{venue.location.address}}</div>
+    </div>
+  </label>
+  {{/venues}}
+  </div>
+
+  <input type="submit" class="btn btn-primary next-step" style="display:none" value="Valider">
+</form>
