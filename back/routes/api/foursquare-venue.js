@@ -10,7 +10,7 @@ var route = {
             res.send({error: true});
         }
         else {
-          res.send(venues);
+          res.send(venues.response.groups[0].items);
         }
     });
   }

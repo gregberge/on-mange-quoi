@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 crypto = require('crypto'),
-shasum = crypto.createHash('sha1'),
+shasum,
 
 venueSchema = new mongoose.Schema({
   foursquareId: String,
@@ -14,9 +14,9 @@ foodMeetingSchema = new mongoose.Schema({
 });
 
 foodMeetingSchema.pre('save', function (next) {
+  shasum = crypto.createHash('sha1');
   shasum.update('' + this._id);
-  this.hash = shasum.digest('hex');
-  console.log(this);
+  this.hash = shasum.digest('hex').substring(0, 5);
   next();
 });
 

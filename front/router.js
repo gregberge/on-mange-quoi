@@ -6,10 +6,24 @@ define(
 
       routes : {
         '': {
+          path: '',
           page: 'home'
         },
         'create': {
-          page: 'create'
+          path: 'create',
+          page: 'create/index'
+        },
+        'create/step-1': {
+          path: 'create/step-1',
+          redirect: 'create'
+        },
+        'create/step-2': {
+          path: 'create/step-2',
+          redirect: 'create'
+        },
+        'food-meeting': {
+          path: 'm/:hash',
+          page: 'food-meeting'
         }
       },
 
@@ -17,19 +31,26 @@ define(
         this.views = [];
 
         var self = this,
-        handleRouteConfig = function (routeConfig) {
-          self.route(route, routeConfig.page, function () {
+        name,
+        handleRouteConfig = function (name) {
+          var routeConfig = self.routes[name];
+          self.route(routeConfig.path, name, function () {
             self.routeHandler(routeConfig, arguments);
           });
         };
 
-        for (var route in this.routes) {
-          handleRouteConfig(this.routes[route]);
+        for (name in this.routes) {
+          handleRouteConfig(name);
         }
       },
 
       routeHandler: function (route, params) {
         var self = this;
+
+        if(route.redirect) {
+          this.navigate(route.redirect, {trigger: true, replace: true});
+          return ;
+        }
 
         if (typeof self.views[route.page] !== 'undefined') {
           this.renderPage(route.page);
@@ -62,8 +83,26 @@ define(
         pageView.render();
       },
 
-      start: function() {
-        Backbone.history.start();
+      start: function () {
+        var hash;
+
+        if (window.location.pathname === '/' && !window.location.hash) {
+          Backbone.history.start({silent: true});
+        }
+        else {
+          if (typeof window.history === 'object' && typeof window.history.replaceState === 'function') {
+            if (window.location.hash) {
+              hash = window.location.hash;
+            }
+            else {
+              hash = window.location.pathname;
+            }
+            window.history.replaceState(null, null, '/');
+            window.location.hash = hash;
+          }
+
+          Backbone.history.start();
+        }
       }
 
     });

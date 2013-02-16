@@ -24,6 +24,7 @@ app.configure(function() {
 app.configure('development', function() {
   app.use('/medias/less', express.static(__dirname + '/../less'));
   app.use('/medias/components', express.static(__dirname + '/../components'));
+  app.use('/medias/font', express.static(__dirname + '/../components/font-awesome/font'));
   APP_PORT = 3000;
 });
 

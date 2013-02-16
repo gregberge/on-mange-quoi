@@ -19,7 +19,7 @@ define(
         BaseView.prototype.render.call(this);
         this.$('.nav li')
         .removeClass('active')
-        .filter('[data-page=' + this.page + ']')
+        .filter('[data-route="' + this.page + '"]')
         .addClass('active');
       },
 

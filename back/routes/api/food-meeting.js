@@ -2,35 +2,41 @@ var FoodMeeting = require(global.root + '/models/food-meeting'),
 route = {
 
   findAll: function (req, res) {
-    FoodMeeting.find().exec(function (err, foodMeetings) {
+    FoodMeeting.find(req.query).exec(function (err, foodMeetings) {
       res.send(foodMeetings);
     });
   },
 
   add: function (req, res) {
-    var foodMeeting;
+    var foodMeeting = new FoodMeeting(req.body);
+    foodMeeting.save(function (err) {
+      if (err) {
+        return res.send({error: true});
+      }
 
-    console.log(req.body);
+      return res.send(foodMeeting);
+    });
+  },
 
-    if (req.body.venues && req.body.venues.length) {
+  update: function (req, res) {
+    var data = req.body;
+    delete data._id;
 
-      foodMeeting = new FoodMeeting();
+    FoodMeeting.update({_id: req.params.id}, data, function (err) {
 
-      req.body.venues.forEach(function (venue) {
-        foodMeeting.venues.push(venue);
-      });
+      if (err) {
+        console.log(err);
+        return res.send({error: true});
+      }
 
-      foodMeeting.save(function (err) {
+      FoodMeeting.findOne({_id: req.params.id}, function (err, foodMeeting) {
         if (err) {
           return res.send({error: true});
         }
 
         return res.send(foodMeeting);
       });
-    }
-    else {
-      return res.send({error: true});
-    }
+    });
   }
 };
 

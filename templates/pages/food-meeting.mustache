@@ -1,0 +1,15 @@
+{{^foodMeeting}}
+<p>Chargement en cours...</p>
+{{/foodMeeting}}
+
+{{#foodMeeting.attributes}}
+<div class="venues">
+  {{#venues}}
+  <div class="venue clearfix">
+    <div class="venue-details">
+      <div class="name">{{name}}</div>
+    </div>
+  </div>
+  {{/venues}}
+</div>
+{{/foodMeeting.attributes}}

@@ -1,8 +1,12 @@
+<h2>Choix des restaurants :</h2>
 <p>Sélectionnez un ou plusieurs restaurants :</p>
 
 <form>
+
   <div class="venues">
-  {{#venues}}
+
+  {{#foursquareVenues.models}}
+  {{#attributes}}
   <label class="venue clearfix" data-name="{{venue.name}}" data-foursquare-id="{{venue.id}}">
     <div class="checkbox">
       <input type="checkbox" name="{{venue.id}}">
@@ -21,8 +25,17 @@
       <div class="address">{{venue.location.address}}</div>
     </div>
   </label>
-  {{/venues}}
+  {{/attributes}}
+  {{/foursquareVenues.models}}
+
+  {{^foursquareVenues.models}}
+  Chargement en cours...
+  {{/foursquareVenues.models}}
+
   </div>
 
-  <input type="submit" class="btn btn-primary next-step" style="display:none" value="Valider">
+  {{#foursquareVenues.length}}
+  <input type="submit" class="btn btn-primary" value="Continuer">
+  {{/foursquareVenues.length}}
+
 </form>
