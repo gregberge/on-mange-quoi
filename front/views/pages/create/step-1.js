@@ -41,13 +41,12 @@ define(
       toggleVenue: function (e) {
         var $checkbox = $(e.currentTarget),
         $venue = $checkbox.parents('.venue'),
-        venues = this.foodMeeting.get('venues');
+        venues = this.foodMeeting.get('venues'),
+        foursquareVenue;
 
         if ($checkbox.is(':checked')) {
-          venues.push({
-            name: $venue.data('name'),
-            foursquareId: $venue.data('foursquare-id')
-          });
+          foursquareVenue = this.foursquareVenues.get($venue.data('id'));
+          venues.push(foursquareVenue.attributes);
         }
         else {
           venues = venues.filter(function (venue) {

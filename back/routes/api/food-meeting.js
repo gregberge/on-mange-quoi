@@ -22,20 +22,14 @@ route = {
     var data = req.body;
     delete data._id;
 
-    FoodMeeting.update({_id: req.params.id}, data, function (err) {
+    data = FoodMeeting.hashEmails(data);
 
+    FoodMeeting.findByIdAndUpdate(req.params.id, data, function (err, foodMeeting) {
       if (err) {
-        console.log(err);
         return res.send({error: true});
       }
 
-      FoodMeeting.findOne({_id: req.params.id}, function (err, foodMeeting) {
-        if (err) {
-          return res.send({error: true});
-        }
-
-        return res.send(foodMeeting);
-      });
+      return res.send(foodMeeting);
     });
   }
 };

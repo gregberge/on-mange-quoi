@@ -1,15 +1,14 @@
-<h2>Choix des restaurants :</h2>
-<p>Sélectionnez un ou plusieurs restaurants :</p>
+{{^foodMeeting}}
+<p>Chargement en cours...</p>
+{{/foodMeeting}}
 
+{{#foodMeeting.attributes}}
 <form>
-
-  <div class="venues">
-
-  {{#foursquareVenues.models}}
-  {{#attributes}}
+<div class="venues">
+  {{#venues}}
   <label class="venue clearfix" data-id="{{venue.id}}">
     <div class="checkbox">
-      <input type="checkbox" name="{{venue.id}}">
+      <input type="radio" name="venue" value="{{venue.id}}">
     </div>
     <div class="venue-icon">
       {{#venue.categories}}
@@ -25,17 +24,10 @@
       <div class="address">{{venue.location.address}}</div>
     </div>
   </label>
-  {{/attributes}}
-  {{/foursquareVenues.models}}
+  {{/venues}}
+</div>
 
-  {{^foursquareVenues.models}}
-  Chargement en cours...
-  {{/foursquareVenues.models}}
-
-  </div>
-
-  {{#foursquareVenues.length}}
-  <input type="submit" class="btn btn-primary" value="Continuer">
-  {{/foursquareVenues.length}}
+<p><input type="submit" class="btn btn-primary" value="Valider"></p>
 
 </form>
+{{/foodMeeting.attributes}}

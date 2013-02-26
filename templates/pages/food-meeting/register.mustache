@@ -1,0 +1,17 @@
+<div class="hero-unit">
+  {{#done}}
+  <h2>Email enregistré, merci !</h2>
+  {{/done}}
+  {{^done}}
+  <h2>Vos collègues vous aiment et veulent manger avec vous !</h2>
+  <p>Pour participer au choix du restaurant, entrez votre email :</p>
+  <form>
+  <p><input type="email" placeholder="Email" class="input-xlarge" id="email" required/></p>
+  <p><input type="submit" class="btn btn-primary" value="Enregister mon email"></p>
+  </form>
+  <hr>
+  <h3>Comment ça marche ?</h3>
+  <p>Chaque jour à 11h un premier email vous sera envoyé dans lequel vous devrez choisir le restaurant,
+  à 12h vous recevrez le restaurant choisi par la majorité !</p>
+  {{/done}}
+</div>

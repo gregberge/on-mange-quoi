@@ -21,9 +21,13 @@ define(
           path: 'create/step-2',
           redirect: 'create'
         },
-        'food-meeting': {
-          path: 'm/:hash',
-          page: 'food-meeting'
+        'food-meeting/register': {
+          path: 'm/:meetingHash',
+          page: 'food-meeting/register'
+        },
+        'food-meeting/choose': {
+          path: 'm/:meetingHash/:email/:emailHash',
+          page: 'food-meeting/choose'
         }
       },
 
@@ -86,22 +90,21 @@ define(
       start: function () {
         var hash;
 
-        if (window.location.pathname === '/' && !window.location.hash) {
-          Backbone.history.start({silent: true});
+        if (window.location.hash) {
+          hash = window.location.hash;
         }
         else {
-          if (typeof window.history === 'object' && typeof window.history.replaceState === 'function') {
-            if (window.location.hash) {
-              hash = window.location.hash;
-            }
-            else {
-              hash = window.location.pathname;
-            }
-            window.history.replaceState(null, null, '/');
-            window.location.hash = hash;
-          }
+          hash = window.location.pathname;
+        }
+
+        if (typeof window.history === 'object' && typeof window.history.replaceState === 'function') {
+          window.history.replaceState(null, null, '/');
+          window.location.hash = hash;
 
           Backbone.history.start();
+        }
+        else {
+          window.location = '/#' + hash;
         }
       }
 
