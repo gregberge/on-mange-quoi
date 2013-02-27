@@ -1,4 +1,5 @@
 var Poll = require(global.root + '/models/poll'),
+moment = require('moment'),
 route = {
 
   findAll: function (req, res) {
@@ -6,21 +7,17 @@ route = {
 
     if (req.query.current) {
 
-      now = new Date();
+      now = moment().hour(0).minute(0).second(0).millisecond(0);
 
-      if (now.getHours() > 12) {
-        res.send([]);
-        return ;
-      }
-      else {
-        req.query.created = {
-          $gte: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
-          $lt: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12)
-        };
+      req.query.created = {
+        $gte: now.toDate(),
+        $lt: now.clone().add('d', 1).toDate()
+      };
 
-        delete req.query.current;
-      }
+      delete req.query.current;
     }
+
+    console.log(req.query);
 
     Poll.find(req.query).exec(function (err, polls) {
       res.send(polls);

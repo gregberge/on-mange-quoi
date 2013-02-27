@@ -29,8 +29,10 @@ define(
         this.poll.set('venue', this.venue);
         this.poll.set('foodMeeting', this.foodMeeting.get('_id'));
         this.poll.set('email', this.email);
-
         this.poll.save();
+
+        this.done = true;
+        this.render();
 
         return false;
       },
@@ -51,7 +53,6 @@ define(
           }
           else {
             self.foodMeeting = foodMeetings.models[0];
-            self.render();
           }
         });
       },
@@ -71,7 +72,8 @@ define(
       },
 
       loadAndCheckPoll: function () {
-        var polls = new Polls();
+        var self = this,
+        polls = new Polls();
 
         polls.fetch({
           data: {
@@ -81,8 +83,10 @@ define(
           }
         }).then(function () {
           if (polls.length) {
-            alert('Vous avez déjà voté aujourd\'hui !');
+            self.hasVoted = true;
           }
+
+          self.render();
         });
       },
 

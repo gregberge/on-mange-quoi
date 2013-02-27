@@ -2,6 +2,9 @@
 <p>Chargement en cours...</p>
 {{/foodMeeting}}
 
+{{^hasVoted}}
+{{^done}}
+
 {{#foodMeeting.attributes}}
 <form>
 <div class="venues">
@@ -31,3 +34,14 @@
 
 </form>
 {{/foodMeeting.attributes}}
+
+{{/done}}
+{{/hasVoted}}
+
+{{#hasVoted}}
+<p>Vous avez déjà voté aujourd'hui, désolé.</p>
+{{/hasVoted}}
+
+{{#done}}
+<p>Votre vote a bien été pris en compte, merci !</p>
+{{/done}}
