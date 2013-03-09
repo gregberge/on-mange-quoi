@@ -3,14 +3,14 @@ define(['backbone'], function (Backbone) {
     idAttribute: '_id',
     urlRoot: '/api/food-meeting',
 
-    addEmail: function (email) {
-      this.attributes.emails.push({email: email});
+    addUser: function (email) {
+      this.attributes.users.push({email: email});
     },
 
-    findEmail: function (email) {
-      for (var i = this.attributes.emails.length - 1; i >= 0; i--) {
-        if (this.attributes.emails[i].email === email) {
-          return this.attributes.emails[i];
+    findUserByEmail: function (email) {
+      for (var i = this.attributes.users.length - 1; i >= 0; i--) {
+        if (this.attributes.users[i].email === email) {
+          return this.attributes.users[i];
         }
       }
 
@@ -19,7 +19,7 @@ define(['backbone'], function (Backbone) {
 
     defaults: {
       venues: [],
-      emails: []
+      users: []
     }
   });
 });

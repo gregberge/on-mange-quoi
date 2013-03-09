@@ -17,8 +17,6 @@ route = {
       delete req.query.current;
     }
 
-    console.log(req.query);
-
     Poll.find(req.query).exec(function (err, polls) {
       res.send(polls);
     });

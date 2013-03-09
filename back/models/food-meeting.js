@@ -1,26 +1,28 @@
-var mongoose = require('mongoose'),
+var db = require('../db'),
+mongoose = require('mongoose'),
 crypto = require('crypto'),
 shasum,
 
-emailSchema = new mongoose.Schema({
+userSchema = new mongoose.Schema({
   email: String,
-  hash: String
+  hash: String,
+  lastSentDate: Date
 }),
 
 foodMeetingSchema = new mongoose.Schema({
   venues: mongoose.Schema.Types.Mixed,
-  emails: [emailSchema],
+  users: [userSchema],
   hash: String,
-  created: {type: Date, default: Date.now}
+  created: {type: Date, 'default': Date.now}
 });
 
-foodMeetingSchema.statics.hashEmails = function (data) {
+foodMeetingSchema.statics.hashUsers = function (data) {
   // hash emails
-  for (var i = data.emails.length - 1; i >= 0; i--) {
-    if (typeof data.emails[i].hash === 'undefined') {
+  for (var i = data.users.length - 1; i >= 0; i--) {
+    if (typeof data.users[i].hash === 'undefined') {
       shasum = crypto.createHash('sha1');
-      shasum.update(data.emails[i].email);
-      data.emails[i].hash = shasum.digest('hex').substring(0, 5);
+      shasum.update(data.users[i].email);
+      data.users[i].hash = shasum.digest('hex').substring(0, 5);
     }
   }
 
@@ -36,5 +38,7 @@ foodMeetingSchema.pre('save', function (next) {
 
   next();
 });
+
+db.connect();
 
 module.exports = exports = mongoose.model('FoodMeeting', foodMeetingSchema);

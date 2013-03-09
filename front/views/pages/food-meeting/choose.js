@@ -57,15 +57,15 @@ define(
         });
       },
 
-      checkEmail: function () {
-        var emailHash = this.urlParams[2],
-        emailData;
+      checkUser: function () {
+        var userHash = this.urlParams[2],
+        userData;
 
         this.email = this.urlParams[1];
 
-        emailData = this.foodMeeting.findEmail(this.email);
+        userData = this.foodMeeting.findUserByEmail(this.email);
 
-        if (!emailData || emailData.hash !== emailHash) {
+        if (!userData || userData.hash !== userHash) {
           alert('Vous êtes tombé au mauvais endroit au mauvais moment, retour à la case départ.');
           window.location = '/';
         }
@@ -93,7 +93,7 @@ define(
       load: function () {
         var self = this;
         this.loadAndCheckFoodMeeting().then(function () {
-          self.checkEmail();
+          self.checkUser();
           self.loadAndCheckPoll();
         });
       }

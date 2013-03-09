@@ -19,12 +19,12 @@ define(
       },
 
       submit: function () {
-        if (this.foodMeeting.findEmail(this.email)) {
+        if (this.foodMeeting.findUserByEmail(this.email)) {
           this.finish();
           return false;
         }
 
-        this.foodMeeting.addEmail(this.email);
+        this.foodMeeting.addUser(this.email);
         this.foodMeeting.save();
 
         this.finish();

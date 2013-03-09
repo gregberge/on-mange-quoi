@@ -1,12 +1,9 @@
 var express = require('express'),
 app = express(),
 cons = require('consolidate'),
-router = require('./router'),
-mongoose = require('mongoose');
+router = require('./router');
 
 global.root = __dirname;
-
-mongoose.connect('localhost', 'test');
 
 var APP_PORT = 80;
 

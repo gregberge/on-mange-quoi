@@ -22,7 +22,7 @@ route = {
     var data = req.body;
     delete data._id;
 
-    data = FoodMeeting.hashEmails(data);
+    data = FoodMeeting.hashUsers(data);
 
     FoodMeeting.findByIdAndUpdate(req.params.id, data, function (err, foodMeeting) {
       if (err) {
