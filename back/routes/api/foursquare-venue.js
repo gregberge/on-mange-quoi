@@ -5,14 +5,16 @@ var route = {
     // restrict to food section
     req.query.section = 'food';
 
-    foursquare.exploreVenues(req.query, function (error, venues) {
+    foursquare.exploreVenues(req.query,
+      function (error, venues) {
         if (error) {
-            res.send({error: true});
+          res.send({error: true});
         }
         else {
           res.send(venues.response.groups[0].items);
         }
-    });
+      }
+    );
   }
 };
 

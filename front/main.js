@@ -4,7 +4,7 @@ var config = {
     templates: 'templates',
     backbone: 'components/backbone/backbone',
     jquery: 'components/jquery/jquery',
-    underscore: 'components/lodash/lodash.underscore',
+    underscore: 'components/lodash/dist/lodash.underscore',
     text: 'components/requirejs-text/text',
     hogan: 'components/hogan/web/builds/2.0.0/hogan-2.0.0.amd',
     bootstrap: 'components/bootstrap/js'
@@ -12,8 +12,8 @@ var config = {
   shim: {
     backbone: {
       deps: [
-      'underscore',
-      'jquery'
+        'underscore',
+        'jquery'
       ],
       exports: 'Backbone'
     },
@@ -22,19 +22,19 @@ var config = {
     },
     'bootstrap/bootstrap-transition': {
       deps: [
-      'jquery'
+        'jquery'
       ]
     },
     'bootstrap/bootstrap-collapse': {
       deps: [
-      'jquery'
+        'jquery'
       ]
     },
     'bootstrap/bootstrap-dropdown': {
       deps: [
-      'jquery',
-      'bootstrap/bootstrap-transition',
-      'bootstrap/bootstrap-collapse'
+        'jquery',
+        'bootstrap/bootstrap-transition',
+        'bootstrap/bootstrap-collapse'
       ]
     }
   },

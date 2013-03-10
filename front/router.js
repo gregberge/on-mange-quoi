@@ -110,5 +110,6 @@ define(
 
     });
 
-return new Router();
-});
+    return new Router();
+  }
+);

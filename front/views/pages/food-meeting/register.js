@@ -61,6 +61,6 @@ define(
         this.loadFoodMeeting();
       }
     });
-
-return View;
-});
+    return View;
+  }
+);

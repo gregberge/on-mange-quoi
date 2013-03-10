@@ -1,7 +1,7 @@
 define(
   ['lib/views/base', 'hogan'],
   function(BaseView, hogan) {
-    
+
     var View = BaseView.extend({
 
       initialize: function() {

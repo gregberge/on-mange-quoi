@@ -65,6 +65,6 @@ define(
         });
       }
     });
-
-return View;
-});
+    return View;
+  }
+);
