@@ -11,6 +11,7 @@ app.configure(function() {
   app.engine('mustache', cons.hogan);
   app.set('view engine', 'mustache');
   app.set('views', __dirname + '/../templates');
+  app.use('/medias', express.static(__dirname + '/../dist/js'));
   app.use('/medias', express.static(__dirname + '/../front'));
   app.use('/medias/templates', express.static(__dirname + '/../templates'));
   app.use('/medias/components', express.static(__dirname + '/../components'));

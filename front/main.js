@@ -1,4 +1,4 @@
-var config = {
+require.config({
   baseUrl: '/medias/',
   paths: {
     templates: 'templates',
@@ -39,14 +39,7 @@ var config = {
     }
   },
   deps: [
-    'bootstrap/bootstrap-dropdown'
+    'bootstrap/bootstrap-dropdown',
+    'app'
   ]
-};
-
-if(typeof module !== 'undefined') {
-  module.exports = config;
-}
-else {
-  require.config(config);
-  require(['app']);
-}
+});
