@@ -2,31 +2,49 @@ var Poll = require( __dirname + '/../models/poll'),
 FoodMeeting = require( __dirname + '/../models/food-meeting'),
 moment = require('moment'),
 mail = require('../mail'),
+mongoose = require('mongoose'),
 _process = {
 
   template: null,
 
   getPollResults: function (callback) {
 
-    var now = moment().hour(0).minute(0).second(0).millisecond(0);
+    var now = moment().hour(0).minute(0).second(0).millisecond(0).add('d', -1);
 
-    Poll.aggregate({
-      $match: {
-        created: {
-          $gte: now.toDate(),
-          $lt: now.clone().add('d', 1).toDate()
+    Poll.aggregate([
+      {
+        $match: {
+          created: {
+            $gt: now.toDate(),
+            $lt: now.clone().add('d', 1).toDate()
+          }
         }
       },
-      $group: {
-        _id: {
-          venue: '$venue',
-          foodMeeting: '$foodMeeting'
-        },
-        total: {
-          $sum: 1
+      {
+        $group: {
+          _id: {
+            venue: '$venue',
+            foodMeeting: '$foodMeeting'
+          },
+          total: {
+            $sum: 1
+          }
+        }
+      },
+      {
+        $group: {
+          _id: {
+            foodMeeting: '$_id.foodMeeting'
+          },
+          polls: {
+            $push: {
+              venue: '$_id.venue',
+              score: '$total'
+            }
+          }
         }
       }
-    },
+    ],
     function (err, polls) {
       if (err) {
         return console.log(err);
@@ -43,12 +61,16 @@ _process = {
       }
 
       pollResult.foodMeeting = foodMeeting;
-      pollResult.venue = foodMeeting.venues.reduce(function (previous, current, i, venues) {
-        if (! previous) {
-          return venues.id === pollResult._id.venue ? pollResult._id.venue : false;
-        }
+      pollResult.polls.map(function (poll) {
+        poll.venue = foodMeeting.venues.reduce(function (previous, current) {
+          return !previous && poll.venue === current.id ? current : previous;
+        }, false);
 
-        return current;
+        return poll;
+      });
+
+      pollResult.winner = pollResult.polls.reduce(function (previous, current) {
+        return previous.score < current.score ? current : previous;
       });
 
       callback(pollResult);
