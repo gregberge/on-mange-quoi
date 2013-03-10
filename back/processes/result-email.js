@@ -2,14 +2,13 @@ var Poll = require( __dirname + '/../models/poll'),
 FoodMeeting = require( __dirname + '/../models/food-meeting'),
 moment = require('moment'),
 mail = require('../mail'),
-mongoose = require('mongoose'),
 _process = {
 
   template: null,
 
   getPollResults: function (callback) {
 
-    var now = moment().hour(0).minute(0).second(0).millisecond(0).add('d', -1);
+    var now = moment().hour(0).minute(0).second(0).millisecond(0);
 
     Poll.aggregate([
       {
