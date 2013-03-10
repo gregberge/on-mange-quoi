@@ -2,8 +2,13 @@
 <head>
   <meta charset="utf-8">
   <title>Ou on mange ?</title>
+  {{#env.development}}
   <link rel="stylesheet/less" type="text/css" href="/medias/less/main.less">
   <script src="/medias/components/less.js/dist/less-1.3.3.js"></script>
+  {{/env.development}}
+  {{#env.production}}
+  <link rel="stylesheet" type="text/css" href="/medias/css/main.css">
+  {{/env.production}}
   <script data-main="/medias/main" src="/medias/components/requirejs/require.js"></script>
 </head>
 <body>

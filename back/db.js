@@ -11,7 +11,7 @@ db = {
 
     db.connecting = true;
 
-    mongoose.connect('localhost', 'test');
+    mongoose.connect('localhost', 'on-mange-quoi');
 
     mongoose.connection.on('close', function () {
       this.connected = false;
