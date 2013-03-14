@@ -54,10 +54,13 @@
   "jquery": true,
   "node": true,
   "devel": true,
-  
+
   "globals": {
     "requirejs": false,
     "require": false,
-    "define": false
+    "define": false,
+    "Backbone": false,
+    "Hogan": false,
+    "_": false
   }
 }
