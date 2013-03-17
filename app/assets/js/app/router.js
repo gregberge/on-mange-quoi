@@ -37,7 +37,7 @@ define(function () {
       this.page = null;
     },
 
-    setPage: function (page) {
+    requirePage: function (page) {
       require(['app/views/pages/' + page], _.bind(this.onRequirePage, this));
     },
 
@@ -47,11 +47,11 @@ define(function () {
     },
 
     home: function () {
-      this.setPage('home');
+      this.requirePage('home');
     },
 
     create: function () {
-      this.setPage('create');
+      this.requirePage('create');
     },
 
     start: function () {
