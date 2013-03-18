@@ -1,3 +1,11 @@
+# npm
 /node_modules
+
+# bower
 /components
+
+# build
 /dist
+
+# sublime-text
+sublime-project.sublime-workspace
