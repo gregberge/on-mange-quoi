@@ -19,6 +19,7 @@ app.configure(function() {
   // aliases
   app.use(express.static(global.base + '/public'));
   app.use('/assets/components', express.static(global.base + '/components'));
+  app.use('/assets/font', express.static(global.base + '/components/font-awesome/font'));
 });
 
 app.configure('development', function () {

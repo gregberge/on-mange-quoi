@@ -37,21 +37,21 @@ define(function () {
       this.page = null;
     },
 
-    requirePage: function (page) {
-      require(['app/views/pages/' + page], _.bind(this.onRequirePage, this));
+    requireRoute: function (route) {
+      require(['app/routes/' + route], _.bind(this.onRequireRoute, this));
     },
 
-    onRequirePage: function (PageView) {
-      this.page = new PageView();
+    onRequireRoute: function (callback) {
+      this.page = callback();
       this.trigger('change:page', this.page);
     },
 
     home: function () {
-      this.requirePage('home');
+      this.requireRoute('home');
     },
 
     create: function () {
-      this.requirePage('create');
+      this.requireRoute('create');
     },
 
     start: function () {

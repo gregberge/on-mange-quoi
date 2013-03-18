@@ -9,11 +9,14 @@
   {{#env.production}}
   <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
   {{/env.production}}
+  <script>
+  conf = {{{config}}};
+  </script>
   <script data-main="/assets/js/main" src="/assets/components/requirejs/require.js"></script>
 </head>
 <body>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">

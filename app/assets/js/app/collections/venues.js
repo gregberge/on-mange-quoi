@@ -1,12 +1,11 @@
 define([
-  'app/models/poll'
+  'app/models/venue'
 ],
 function (
-  Poll
+  Venue
 ) {
   return Backbone.Collection.extend({
-
-    model: Poll,
-    url: '/api/poll'
+    model: Venue,
+    url: '/api/venue'
   });
 });

@@ -1,6 +1,7 @@
 module.exports = exports = require('lodash').extend({
 
   server: {
+    domain: 'on-mange-quoi.co',
     port: 80
   },
 

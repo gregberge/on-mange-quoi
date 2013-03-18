@@ -6,12 +6,30 @@ function (
 ) {
   return View.extend({
 
-    initialize: function() {
+    initialize: function () {
+      View.prototype.initialize.apply(this, arguments);
+
       this.template = Hogan.compile(this.template);
     },
 
-    render: function() {
-      this.$el.html(this.template.render(this));
+    toJSON: function () {
+      var data = {};
+
+      if (this.model) {
+        data.model = this.model.toJSON();
+      }
+
+      if (this.collection) {
+        data.collection = this.collection.toJSON();
+      }
+
+      return data;
+    },
+
+    render: function () {
+      View.prototype.render.apply(this, arguments);
+
+      this.$el.html(this.template.render(this.toJSON()));
       return this;
     }
 

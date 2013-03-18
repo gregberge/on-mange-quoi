@@ -1,7 +1,12 @@
-define(['backbone'], function (Backbone) {
+define(function () {
   return Backbone.Model.extend({
+
     idAttribute: '_id',
     urlRoot: '/api/food-meeting',
+    defaults: {
+      venues: [],
+      users: []
+    },
 
     addUser: function (email) {
       this.attributes.users.push({email: email});
@@ -15,11 +20,6 @@ define(['backbone'], function (Backbone) {
       }
 
       return false;
-    },
-
-    defaults: {
-      venues: [],
-      users: []
     }
   });
 });

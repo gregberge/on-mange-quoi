@@ -1,8 +1,8 @@
-define(['backbone'], function (Backbone) {
+define(function () {
   return Backbone.Model.extend({
+
     idAttribute: '_id',
     urlRoot: '/api/poll',
-
     defaults: {}
   });
 });

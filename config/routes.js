@@ -6,7 +6,7 @@ routes = function (app) {
 
   /** API **/
 
-  app.get('/api/foursquare-venue', require(ROUTE_DIR + '/api/foursquare-venue').findAll);
+  app.get('/api/venue', require(ROUTE_DIR + '/api/venue').findAll);
 
   app.get('/api/food-meeting', require(ROUTE_DIR + '/api/food-meeting').findAll);
   app.post('/api/food-meeting', require(ROUTE_DIR + '/api/food-meeting').add);

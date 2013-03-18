@@ -1,6 +1,7 @@
-define(['backbone'], function (Backbone) {
+define(function () {
   return Backbone.Model.extend({
-    urlRoot: '/api/foursquare-venue',
+
+    urlRoot: '/api/venue',
 
     parse: function (resp) {
       resp.id = resp.venue.id;

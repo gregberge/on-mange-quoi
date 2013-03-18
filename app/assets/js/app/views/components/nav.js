@@ -17,6 +17,7 @@ function (
       this.route = null;
 
       router.on('route', this.setRoute, this);
+      this.on('change:route', this.render, this);
     },
 
     render: function () {
@@ -30,7 +31,7 @@ function (
 
     setRoute: function (route) {
       this.route = route;
-      this.render();
+      this.trigger('change:route', route);
     },
 
     onClickBrand: function (event) {

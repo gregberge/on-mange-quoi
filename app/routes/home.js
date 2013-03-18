@@ -1,4 +1,5 @@
-var app = require(global.base + '/config/application');
+var app = require(global.base + '/config/application'),
+config = require(global.base + '/config/config');
 
 module.exports = exports = {
   show: function (req, res) {
@@ -6,7 +7,10 @@ module.exports = exports = {
       env: {
         production: app.settings.env === 'production',
         development: app.settings.env === 'development'
-      }
+      },
+      config: JSON.stringify({
+        domain: config.server.domain
+      })
     });
   }
 };
