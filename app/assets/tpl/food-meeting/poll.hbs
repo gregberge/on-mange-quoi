@@ -1,0 +1,38 @@
+<h3>Ou souhaitez-vous manger aujourd'hui ?</h3>
+{{#if loaded}}
+  {{#if alreadyVoted}}
+  <div class="alert alert-success">
+    <strong>Votre vote a bien été pris en compte.</strong> Vous recevrez le résultat vers midi.
+  </div>
+  {{else}}
+    {{#with foodMeeting}}
+    <form>
+    <div class="venues">
+      {{#each venues}}
+      <label class="venue clearfix" data-id="{{venue.id}}">
+        <div class="checkbox">
+          <input type="radio" name="venue" value="{{venue.id}}">
+        </div>
+        <div class="venue-icon">
+          {{#each venue.categories}}
+          <img class="picture" src="{{icon.prefix}}bg_88{{icon.suffix}}" width="32" height="32">
+          {{/each}}
+          <span class="rating">
+            {{venue.rating}}
+            {{#unless venue.rating}}-{{/unless}}
+          </span>
+        </div>
+        <div class="venue-details">
+          <div class="name">{{venue.name}}</div>
+          <div class="address">{{venue.location.address}}</div>
+        </div>
+      </label>
+      {{/each}}
+    </div>
+
+    <p><input type="submit" class="btn btn-primary" value="Voter"></p>
+
+    </form>
+    {{/with}}
+  {{/if}}
+{{/if}}

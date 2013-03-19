@@ -4,6 +4,7 @@ define(function () {
     idAttribute: '_id',
     urlRoot: '/api/food-meeting',
     defaults: {
+      hash: null,
       venues: [],
       users: []
     },

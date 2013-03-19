@@ -3,6 +3,10 @@ define(function () {
 
     idAttribute: '_id',
     urlRoot: '/api/poll',
-    defaults: {}
+    defaults: {
+      venue: null,
+      email: null,
+      foodMeeting: null
+    }
   });
 });

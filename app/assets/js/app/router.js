@@ -1,37 +1,11 @@
 define(function () {
   var Router = Backbone.Router.extend( {
 
-    old_routes : {
-      '': {
-        path: '',
-        page: 'home'
-      },
-      'create': {
-        path: 'create',
-        page: 'create/index'
-      },
-      'create/step-1': {
-        path: 'create/step-1',
-        redirect: 'create'
-      },
-      'create/step-2': {
-        path: 'create/step-2',
-        redirect: 'create'
-      },
-      'food-meeting/register': {
-        path: 'm/:meetingHash',
-        page: 'food-meeting/register'
-      },
-      'food-meeting/choose': {
-        path: 'm/:meetingHash/:email/:emailHash',
-        page: 'food-meeting/choose'
-      }
-    },
-
     routes: {
-      ''                   : 'home',
-      'food-meeting/new'   : 'newFoodMeeting',
-      'food-meeting/:id'   : 'registerFoodMeeting'
+      ''                                  : 'home',
+      'food-meeting/new'                  : 'newFoodMeeting',
+      'food-meeting/:id'                  : 'registerFoodMeeting',
+      'food-meeting/:id/poll/:email-:hash': 'foodMeetingPoll'
     },
 
     initialize: function () {
@@ -59,6 +33,10 @@ define(function () {
 
     registerFoodMeeting: function () {
       this.requireRoute('food-meeting/register', arguments);
+    },
+
+    foodMeetingPoll: function () {
+      this.requireRoute('food-meeting/poll', arguments);
     },
 
     start: function () {
