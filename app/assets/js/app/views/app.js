@@ -22,7 +22,6 @@ function (
     },
 
     onPageChange: function (pageView) {
-
       // stop listening last page
       if (this.pageView) {
         this.pageView.stopListening();
@@ -33,17 +32,19 @@ function (
     },
 
     render: function () {
+      View.prototype.render.apply(this, arguments);
+
       this.assign('.navbar', this.navView);
 
-      this.renderPage();
-
-      return this;
+      return this.renderPage();
     },
 
     renderPage: function () {
       if (this.pageView) {
         this.assign('#page', this.pageView);
       }
+
+      return this;
     }
   });
 });

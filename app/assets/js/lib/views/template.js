@@ -9,27 +9,20 @@ function (
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
-      this.template = Hogan.compile(this.template);
+      this.template = Handlebars.compile(this.template);
     },
 
     toJSON: function () {
-      var data = {};
-
-      if (this.model) {
-        data.model = this.model.toJSON();
-      }
-
-      if (this.collection) {
-        data.collection = this.collection.toJSON();
-      }
-
-      return data;
+      return {
+        collection: this.collection ? this.collection.toJSON() : null,
+        model: this.model ? this.model.toJSON() : null,
+      };
     },
 
     render: function () {
       View.prototype.render.apply(this, arguments);
 
-      this.$el.html(this.template.render(this.toJSON()));
+      this.$el.html(this.template(this.toJSON()));
       return this;
     }
 

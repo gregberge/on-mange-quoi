@@ -9,6 +9,6 @@
     "requirejs-text": "~2.0.4",
     "backbone": "~0.9.10",
     "lodash": "~1.0.1",
-    "hogan": "latest"
+    "handlebars": "~1.0.0-rc.3"
   }
 }

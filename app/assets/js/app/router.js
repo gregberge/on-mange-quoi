@@ -29,29 +29,36 @@ define(function () {
     },
 
     routes: {
-      ''            : 'home',
-      'create'      : 'create',
+      ''                   : 'home',
+      'food-meeting/new'   : 'newFoodMeeting',
+      'food-meeting/:id'   : 'registerFoodMeeting'
     },
 
     initialize: function () {
       this.page = null;
     },
 
-    requireRoute: function (route) {
-      require(['app/routes/' + route], _.bind(this.onRequireRoute, this));
+    requireRoute: function (route, params) {
+      require(['app/routes/' + route], _.bind(function (pageFactory) {
+        this.onRequireRoute(pageFactory, params);
+      }, this));
     },
 
-    onRequireRoute: function (callback) {
-      this.page = callback();
+    onRequireRoute: function (pageFactory, params) {
+      this.page = pageFactory.apply(this, params);
       this.trigger('change:page', this.page);
     },
 
     home: function () {
-      this.requireRoute('home');
+      this.requireRoute('home', arguments);
     },
 
-    create: function () {
-      this.requireRoute('create');
+    newFoodMeeting: function () {
+      this.requireRoute('food-meeting/new', arguments);
+    },
+
+    registerFoodMeeting: function () {
+      this.requireRoute('food-meeting/register', arguments);
     },
 
     start: function () {

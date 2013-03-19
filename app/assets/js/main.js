@@ -8,7 +8,7 @@ require.config({
     'jquery'      : '../components/jquery/jquery',
     'lodash'      : '../components/lodash/dist/lodash.underscore',
     'text'        : '../components/requirejs-text/text',
-    'hogan'       : '../components/hogan/web/builds/2.0.0/hogan-2.0.0.amd'
+    'handlebars'  : '../components/handlebars/handlebars'
   },
   shim: {
     'backbone': {
@@ -18,8 +18,8 @@ require.config({
       ],
       exports: 'Backbone'
     },
-    'hogan': {
-      exports: 'Hogan'
+    'handlebars': {
+      exports: 'Handlebars'
     },
     'lodash': {
       exports: '_'
@@ -44,7 +44,7 @@ require.config({
     'app': {
       deps: [
         'backbone',
-        'hogan',
+        'handlebars',
         'bootstrap/bootstrap-dropdown'
       ]
     }

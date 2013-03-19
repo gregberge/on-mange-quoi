@@ -18,6 +18,12 @@ route = {
     });
   },
 
+  find: function (req, res) {
+    FoodMeeting.findById(req.params.id).exec(function (err, foodMeeting) {
+      res.send(foodMeeting);
+    });
+  },
+
   update: function (req, res) {
     var data = req.body;
     delete data._id;

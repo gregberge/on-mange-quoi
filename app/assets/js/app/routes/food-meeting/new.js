@@ -1,5 +1,5 @@
 define([
-  'app/views/pages/create',
+  'app/views/food-meeting/new',
   'app/models/food-meeting'
 ],
 function (

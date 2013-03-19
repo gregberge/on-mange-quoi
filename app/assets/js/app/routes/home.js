@@ -1,5 +1,5 @@
 define([
-  'app/views/pages/home'
+  'app/views/home'
 ],
 function (
   View

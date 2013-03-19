@@ -1,6 +1,6 @@
 define([
   'lib/views/template',
-  'text!tpl/pages/home.mustache',
+  'text!tpl/home.hbs',
   'app/router'
 ],
 function (

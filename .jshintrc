@@ -60,7 +60,7 @@
     "require": false,
     "define": false,
     "Backbone": false,
-    "Hogan": false,
+    "Handlebars": false,
     "_": false
   }
 }

@@ -1,0 +1,41 @@
+<h2>Création d'un rendez-vous du midi</h2>
+<ul class="breadcrumb">
+  <li>Inscription <span class="divider">/</span></li>
+  <li class="active">Choix des restaurants <span class="divider">/</span></li>
+  <li>Invitation des collègues</li>
+</ul>
+
+<form>
+  <div class="venues">
+    {{#each collection}}
+    <label class="venue clearfix" data-id="{{venue.id}}">
+      <div class="checkbox">
+        <input type="checkbox" name="{{venue.id}}">
+      </div>
+      <div class="venue-icon">
+        {{#each venue.categories}}
+        <img class="picture" src="{{icon.prefix}}bg_88{{icon.suffix}}" width="32" height="32">
+        {{/each}}
+        <span class="rating">
+          {{venue.rating}}
+          {{#unless venue.rating}}-{{/unless}}
+        </span>
+      </div>
+      <div class="venue-details">
+        <div class="name">{{venue.name}}</div>
+        <div class="address">{{venue.location.address}}</div>
+      </div>
+    </label>
+    {{/each}}
+
+    {{#unless collection}}
+    <p class="loader">
+      <i class="icon-spinner icon-spin icon-4x"></i>
+    </p>
+    {{/unless}}
+  </div>
+
+  {{#if collection}}
+  <input type="submit" class="btn btn-primary" value="Continuer">
+  {{/if}}
+</form>

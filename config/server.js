@@ -9,8 +9,8 @@ app.configure(function() {
   app.use(app.router);
 
   // view config
-  app.engine('mustache', require('consolidate').hogan);
-  app.set('view engine', 'mustache');
+  app.engine('hbs', require('consolidate').handlebars);
+  app.set('view engine', 'hbs');
   app.set('views', global.base + '/app/templates');
 
   // routes

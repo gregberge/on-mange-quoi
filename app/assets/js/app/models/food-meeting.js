@@ -9,17 +9,18 @@ define(function () {
     },
 
     addUser: function (email) {
-      this.attributes.users.push({email: email});
+      if (this.findUserByEmail(email)) {
+        return this;
+      }
+
+      this.get('users').push({email: email});
+      return this;
     },
 
     findUserByEmail: function (email) {
-      for (var i = this.attributes.users.length - 1; i >= 0; i--) {
-        if (this.attributes.users[i].email === email) {
-          return this.attributes.users[i];
-        }
-      }
-
-      return false;
+      return _.find(this.get('users'), function (user) {
+        return user.email === email;
+      });
     }
   });
 });

@@ -3,6 +3,5 @@ define([
 ], function (
   AppView
 ) {
-  window.app = new AppView();
-  window.app.render();
+  window.app = (new AppView()).render();
 });
