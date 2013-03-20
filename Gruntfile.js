@@ -25,8 +25,9 @@ module.exports = function (grunt) {
     requirejs: {
       all: {
         options: {
+          appDir: 'app/assets/js',
+          baseUrl: '.',
           mainConfigFile: 'app/assets/js/main.js',
-          baseUrl: 'app/assets/js',
           paths: {
             'bootstrap'   : '../../../components/bootstrap/js',
             'backbone'    : '../../../components/backbone/backbone',
@@ -35,8 +36,31 @@ module.exports = function (grunt) {
             'text'        : '../../../components/requirejs-text/text',
             'handlebars'  : '../../../components/handlebars/handlebars'
           },
-          name: 'app',
-          out: 'public/assets/js/main.js',
+          modules: [
+            {
+              name: 'main'
+            },
+            {
+              name: 'app/routes/home',
+              exclude: [
+                'main'
+              ],
+              include: [
+                'app/routes/about'
+              ]
+            },
+            {
+              name: 'app/routes/food-meeting/new',
+              exclude: [
+                'main'
+              ],
+              include: [
+                'app/routes/food-meeting/poll',
+                'app/routes/food-meeting/register'
+              ]
+            },
+          ],
+          dir: 'public/assets/js',
         }
       }
     },
@@ -44,8 +68,8 @@ module.exports = function (grunt) {
     copy: {
       all: {
         files: [
-          {src: 'app/assets/tpl/**', dest: 'public/assets/tpl/'},
-          {src: 'app/assets/img/**', dest: 'public/assets/img/'}
+          {src: '**', dest: 'public/assets/tpl/', expand: true, cwd: 'app/assets/tpl/'},
+          {src: '**', dest: 'public/assets/img/', expand: true, cwd: 'app/assets/img/'}
         ]
       }
     }
