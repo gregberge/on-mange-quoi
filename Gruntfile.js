@@ -7,16 +7,17 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['Gruntfile.js', 'front/**/*.js', 'back/**/*.js', '!front/build.js']
+      all: ['Gruntfile.js', 'app/**/*.js']
     },
 
     less: {
       all: {
         options: {
+          paths: ['app/assets/less', 'public'],
           compress: true
         },
         files: {
-          'dist/css/main.css': ['less/main.less']
+          'public/assets/css/main.css': ['app/assets/less/main.less']
         }
       }
     },
@@ -24,19 +25,28 @@ module.exports = function (grunt) {
     requirejs: {
       all: {
         options: {
-          mainConfigFile: 'front/main.js',
-          baseUrl: 'front',
-          name: 'main',
-          out: 'dist/js/main.js',
+          mainConfigFile: 'app/assets/js/main.js',
+          baseUrl: 'app/assets/js',
           paths: {
-            backbone: '../components/backbone/backbone',
-            jquery: '../components/jquery/jquery',
-            underscore: '../components/lodash/dist/lodash.underscore',
-            text: '../components/requirejs-text/text',
-            hogan: '../components/hogan/web/builds/2.0.0/hogan-2.0.0.amd',
-            bootstrap: '../components/bootstrap/js'
-          }
+            'bootstrap'   : '../../../components/bootstrap/js',
+            'backbone'    : '../../../components/backbone/backbone',
+            'jquery'      : '../../../components/jquery/jquery',
+            'lodash'      : '../../../components/lodash/dist/lodash.underscore',
+            'text'        : '../../../components/requirejs-text/text',
+            'handlebars'  : '../../../components/handlebars/handlebars'
+          },
+          name: 'app',
+          out: 'public/assets/js/main.js',
         }
+      }
+    },
+
+    copy: {
+      all: {
+        files: [
+          {src: 'app/assets/tpl/**', dest: 'public/assets/tpl/'},
+          {src: 'app/assets/img/**', dest: 'public/assets/img/'}
+        ]
       }
     }
   });
@@ -44,6 +54,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['jshint', 'less']);
+  grunt.registerTask('default', ['jshint', 'less', 'requirejs', 'copy']);
 };

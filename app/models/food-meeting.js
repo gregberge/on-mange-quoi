@@ -1,3 +1,4 @@
+/* global -_*/
 var _ = require('lodash'),
 mongoose = require('mongoose'),
 crypto = require('crypto'),
