@@ -10,6 +10,8 @@ install:
 	@echo "\n${HR}"
 	@echo "Installing website..."
 	@echo "${HR}\n"
+	@git clean -dxf
+	@echo "Cleaning project...                   ${CHECK} Done"
 	@npm install
 	@echo "Install dependencies...               ${CHECK} Done"
 	@grunt
