@@ -7,14 +7,15 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['Gruntfile.js', 'app/**/*.js']
+      'default': ['Gruntfile.js', 'app/**/*.js']
     },
 
     less: {
-      all: {
+      'default': {
         options: {
           paths: ['app/assets/less', 'public'],
-          compress: true
+          compress: true,
+          yuicompress: true
         },
         files: {
           'public/assets/css/main.css': ['app/assets/less/main.less']
@@ -23,7 +24,7 @@ module.exports = function (grunt) {
     },
 
     requirejs: {
-      all: {
+      'default': {
         options: {
           appDir: 'app/assets/js',
           baseUrl: '.',
@@ -65,10 +66,17 @@ module.exports = function (grunt) {
       }
     },
 
+    uglify: {
+      'default': {
+        files: {
+          'public/assets/js/require.js' : 'components/requirejs/require.js'
+        }
+      }
+    },
+
     copy: {
-      all: {
+      'default': {
         files: [
-          {src: '**', dest: 'public/assets/tpl/', expand: true, cwd: 'app/assets/tpl/'},
           {src: '**', dest: 'public/assets/img/', expand: true, cwd: 'app/assets/img/'}
         ]
       }
@@ -78,7 +86,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['jshint', 'less', 'requirejs', 'copy']);
+  grunt.registerTask('default', ['jshint', 'less', 'requirejs', 'uglify', 'copy']);
 };
