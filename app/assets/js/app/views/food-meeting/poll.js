@@ -65,8 +65,9 @@ define([
         return alert('Vous devez choisir un restaurant.');
       }
 
-      this.model.set('venue', this.venue);
+      this.model.set('venue', venueId);
       this.model.set('email', this.email);
+      console.log(this.model.attributes);
       this.model.save(null, {
         success: _.bind(this.render, this)
       });

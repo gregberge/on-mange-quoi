@@ -1,5 +1,6 @@
 var FoodMeeting = require(global.base + '/app/models/food-meeting'),
 mail = require(global.base + '/lib/mail'),
+config = require(global.base + '/config/config'),
 _process = {
 
   template: null,
@@ -22,32 +23,20 @@ _process = {
 
   processFoodMeetingUser: function (foodMeeting, user) {
     var data = {
-      link: 'http://www.on-mange-quoi.co/m/' + foodMeeting.hash + '/' + user.email + '/' + user.hash,
-      unsubscribeLink: 'http://www.on-mange-quoi.co/m/' + foodMeeting.hash + '/' + user.email + '/' + user.hash + '/unsubscribe'
+      link: 'http://' + config.server.domain + '/food-meeting/' + foodMeeting._id + '/poll/' + user.email + '-' + user.hash,
+      unsubscribeLink: 'http://' + config.server.domain + '/food-meeting/' + foodMeeting._id + '/unsubscribe/' + user.email + '-' + user.hash
     };
 
     mail('poll', data, {
       from: 'On-mange-quoi <noreply@on-mange-quoi.co>',
       to: [user.email],
-      subject: 'On mange quoi ?'
+      subject: 'C\'est l\'heure de voter'
     }, function (err) {
       if (err) {
         return console.log(err);
       }
 
       console.log('poll email sent to ', user.email);
-      _process.updateLastSentDate(foodMeeting, user);
-    });
-  },
-
-  updateLastSentDate: function (foodMeeting, user) {
-    user.lastSentDate = Date.now();
-    foodMeeting.save(function (err) {
-      if (err) {
-        return console.log(err);
-      }
-
-      console.log('lastSentDate update for user', user.email);
     });
   },
 
@@ -58,4 +47,4 @@ _process = {
   }
 };
 
-exports.exec = _process.exec;
+module.exports = exports = _process.exec;

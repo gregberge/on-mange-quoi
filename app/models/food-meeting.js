@@ -28,13 +28,13 @@ foodMeetingSchema = new mongoose.Schema({
   created: {type: Date, 'default': Date.now}
 });
 
-foodMeetingSchema.statics.hashUsers = function (data) {
-  data.users = _.map(data.users, hashUser);
-  return data;
+foodMeetingSchema.statics.hashUsers = function (users) {
+  return _.map(users, hashUser);
 };
 
 foodMeetingSchema.pre('save', function (next) {
   this.hash = hashId(this._id);
+  this.users = foodMeetingSchema.statics.hashUsers(this.users);
   next();
 });
 

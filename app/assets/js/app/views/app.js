@@ -1,7 +1,7 @@
 define([
   'lib/views/base',
   'app/router',
-  'app/views/components/nav'
+  'app/views/nav'
 ],
 function (
   View,

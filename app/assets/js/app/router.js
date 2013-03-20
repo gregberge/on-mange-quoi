@@ -3,6 +3,7 @@ define(function () {
 
     routes: {
       ''                                  : 'home',
+      'about'                             : 'about',
       'food-meeting/new'                  : 'newFoodMeeting',
       'food-meeting/:id'                  : 'registerFoodMeeting',
       'food-meeting/:id/poll/:email-:hash': 'foodMeetingPoll'
@@ -37,6 +38,10 @@ define(function () {
 
     foodMeetingPoll: function () {
       this.requireRoute('food-meeting/poll', arguments);
+    },
+
+    about: function () {
+      this.requireRoute('about', arguments);
     },
 
     start: function () {

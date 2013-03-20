@@ -28,7 +28,7 @@ route = {
     var data = req.body;
     delete data._id;
 
-    data = FoodMeeting.hashUsers(data);
+    data.users = FoodMeeting.hashUsers(data.users);
 
     FoodMeeting.findByIdAndUpdate(req.params.id, data, function (err, foodMeeting) {
       if (err) {
