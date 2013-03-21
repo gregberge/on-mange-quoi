@@ -77,6 +77,7 @@ module.exports = function (grunt) {
     copy: {
       'default': {
         files: [
+          {src: '**', dest: 'public/assets/tpl/', expand: true, cwd: 'app/assets/tpl/'},
           {src: '**', dest: 'public/assets/img/', expand: true, cwd: 'app/assets/img/'}
         ]
       }
