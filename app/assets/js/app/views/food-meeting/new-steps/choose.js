@@ -68,7 +68,8 @@ function (
     refreshFromPosition: function (position) {
       this.collection.fetch({
         data: {
-          ll: position.coords.latitude + ',' + position.coords.longitude
+          ll: position.coords.latitude + ',' + position.coords.longitude,
+          llAcc: position.coords.accuracy
         }
       });
     }
