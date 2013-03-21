@@ -11,6 +11,7 @@ install:
 	@echo "Installing website..."
 	@echo "${HR}\n"
 	@npm install
+	@bower install
 	@echo "Install dependencies...               ${CHECK} Done"
 	@grunt
 	@echo "Building project...                   ${CHECK} Done"

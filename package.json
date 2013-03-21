@@ -6,14 +6,11 @@
     "type": "git",
     "url": "git://github.com/neoziro/on-mange-quoi.git"
   },
-  "scripts": {
-    "install": "bower install"
-  },
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "dependencies": {
     "express": "~3.1.0",
     "consolidate": "~0.8.0",
-    "foursquarevenues": "https://registry.npmjs.org/foursquarevenues/-/foursquarevenues-0.0.5.tgz",
+    "foursquarevenues": "~0.0.5",
     "mongoose": "~3.5.5",
     "mandrill-send": "0.0.3",
     "cron": "~1.0.1",
