@@ -45,7 +45,7 @@ define(function () {
     },
 
     start: function () {
-      Backbone.history.start();
+      Backbone.history.start({pushState: true});
     }
   });
 

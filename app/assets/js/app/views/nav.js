@@ -9,6 +9,7 @@ function (
   return View.extend({
 
     events: {
+      'click li a': 'onClickRoute',
       'click .brand': 'onClickBrand'
     },
 
@@ -38,6 +39,12 @@ function (
       event.preventDefault();
 
       router.navigate('', {trigger: true});
+    },
+
+    onClickRoute: function (event) {
+      event.preventDefault();
+
+      router.navigate($(event.currentTarget).attr('href'), {trigger: true});
     }
   });
 });

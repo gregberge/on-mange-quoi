@@ -12,7 +12,7 @@ module.exports = exports = {
         domain: config.server.domain
       }),
       partials: {
-        page: '../../assets/tpl/home'
+        page: '../../assets/tpl/about'
       }
     });
   }

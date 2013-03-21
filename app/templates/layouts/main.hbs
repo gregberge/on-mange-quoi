@@ -16,8 +16,7 @@
   <script data-main="/assets/js/main" src="/assets/js/require.js"></script>
   {{/if}}
 </head>
-<body>
-
+<body {{#if body.className}}class="{{body.className}}"{{/if}}>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -29,8 +28,8 @@
         <a class="brand" href="/">On mange quoi ?</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li data-route="create"><a href="#/food-meeting/new">Créer un rendez-vous du midi</a></li>
-            <li data-route="about"><a href="#/about">A propos</a></li>
+            <li data-route="newFoodMeeting"><a href="/food-meeting/new">Créer un rendez-vous du midi</a></li>
+            <li data-route="about"><a href="/about">A propos</a></li>
           </ul>
         </div>
       </div>
@@ -38,6 +37,7 @@
   </div>
 
   <div class="container" id="page">
+    {{> page}}
   </div>
 </body>
 </html>

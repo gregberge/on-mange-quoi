@@ -41,6 +41,7 @@ function (
 
     renderPage: function () {
       if (this.pageView) {
+        this.$el.attr('class', '');
         this.assign('#page', this.pageView);
       }
 

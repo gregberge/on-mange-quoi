@@ -1,13 +1,25 @@
 define([
   'lib/views/template',
-  'text!tpl/home.hbs'
+  'text!tpl/home.hbs',
+  'app/router'
 ],
 function (
   View,
-  template
+  template,
+  router
 ) {
   return View.extend({
 
-    template: template
+    template: template,
+
+    events: {
+      'click .btn': 'onClickButtonCreate'
+    },
+
+    onClickButtonCreate: function (event) {
+      event.preventDefault();
+
+      router.navigate($(event.currentTarget).attr('href'), {trigger: true});
+    }
   });
 });

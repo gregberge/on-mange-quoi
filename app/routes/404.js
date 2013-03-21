@@ -11,8 +11,11 @@ module.exports = exports = {
       config: JSON.stringify({
         domain: config.server.domain
       }),
+      body: {
+        className: 'error-404'
+      },
       partials: {
-        page: '../../assets/tpl/home'
+        page: '../pages/404'
       }
     });
   }

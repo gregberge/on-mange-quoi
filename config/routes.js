@@ -4,6 +4,8 @@ toHash = function (req, res) {
 },
 routes = function (app) {
   app.get('/', require(ROUTE_DIR + '/home').show);
+  app.get('/about', require(ROUTE_DIR + '/about').show);
+
   app.get('/food-meeting/:id', toHash);
   app.get('/food-meeting/:id/poll/:email-:hash', toHash);
 
@@ -19,6 +21,8 @@ routes = function (app) {
   app.get('/api/poll', require(ROUTE_DIR + '/api/poll').findAll);
   app.post('/api/poll', require(ROUTE_DIR + '/api/poll').add);
   app.put('/api/poll/:id', require(ROUTE_DIR + '/api/poll').update);
+
+  app.use(require(ROUTE_DIR + '/404').show);
 };
 
 exports = module.exports = routes;
