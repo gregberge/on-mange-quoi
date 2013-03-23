@@ -1,13 +1,11 @@
 var ROUTE_DIR = global.base + '/app/routes',
-toHash = function (req, res) {
-  res.redirect('/#' + req.url);
-},
 routes = function (app) {
   app.get('/', require(ROUTE_DIR + '/home').show);
   app.get('/about', require(ROUTE_DIR + '/about').show);
 
-  app.get('/food-meeting/:id', toHash);
-  app.get('/food-meeting/:id/poll/:email-:hash', toHash);
+  app.get('/food-meeting/new', require(ROUTE_DIR + '/loading').show);
+  app.get('/food-meeting/:id', require(ROUTE_DIR + '/loading').show);
+  app.get('/food-meeting/:id/poll/:email-:hash', require(ROUTE_DIR + '/loading').show);
 
   /** API **/
 
