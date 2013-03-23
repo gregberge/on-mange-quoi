@@ -21,6 +21,7 @@ function (
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
+      this.position = null;
       this.locationError = false;
       this.collection = new Venues();
 
@@ -32,7 +33,8 @@ function (
 
     toJSON: function () {
       return _.extend(View.prototype.toJSON.apply(this, arguments), {
-        locationError: this.locationError
+        locationError: this.locationError,
+        position: this.position
       });
     },
 
@@ -80,7 +82,8 @@ function (
 
     localize: function () {
       navigator.geolocation.getCurrentPosition(_.bind(function (position) {
-        this.trigger('localize', position);
+        this.position = position;
+        this.trigger('localize', this.position);
       }, this), _.bind(function (error) {
         this.setLocationError(error);
         this.render();

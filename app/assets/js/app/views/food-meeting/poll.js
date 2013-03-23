@@ -87,7 +87,8 @@ define([
           email: this.email,
           current: true,
           foodMeeting: this.model.get('foodMeeting')
-        }
+        },
+        reset: true
       });
     }
   });
