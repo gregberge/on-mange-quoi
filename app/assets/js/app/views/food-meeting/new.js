@@ -43,7 +43,7 @@ function (
       this.chooseView.on('done', _.bind(this.setStep, this, this.inviteView));
       this.inviteView.on('done', this.save, this);
 
-      this.setStep(this.signupView);
+      this.setStep(this.chooseView);
     },
 
     render: function () {

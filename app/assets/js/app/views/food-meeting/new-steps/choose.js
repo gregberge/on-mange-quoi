@@ -14,18 +14,26 @@ function (
 
     events: {
       'submit form'                  : 'onSubmit',
-      'change .venue [type=checkbox]': 'onToggleVenue'
+      'change .venue [type=checkbox]': 'onToggleVenue',
+      'click  .retry'                : 'onClickRetry'
     },
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
+      this.locationError = false;
       this.collection = new Venues();
 
       this.collection.on('reset', this.render, this);
       this.on('localize', this.refreshFromPosition, this);
 
       this.localize();
+    },
+
+    toJSON: function () {
+      return _.extend(View.prototype.toJSON.apply(this, arguments), {
+        locationError: this.locationError
+      });
     },
 
     render: function () {
@@ -59,10 +67,24 @@ function (
       this.model.set('venues', venues.toJSON());
     },
 
+    setLocationError: function (value) {
+      this.locationError = value;
+      this.render();
+    },
+
+    onClickRetry: function (event) {
+      event.preventDefault();
+      this.setLocationError(false);
+      this.localize();
+    },
+
     localize: function () {
       navigator.geolocation.getCurrentPosition(_.bind(function (position) {
         this.trigger('localize', position);
-      }, this));
+      }, this), _.bind(function (error) {
+        this.setLocationError(error);
+        this.render();
+      }, this), {timeout: 5000});
     },
 
     refreshFromPosition: function (position) {
@@ -70,7 +92,11 @@ function (
         data: {
           ll: position.coords.latitude + ',' + position.coords.longitude,
           llAcc: position.coords.accuracy
-        }
+        },
+        reset: true,
+        error: _.bind(function () {
+          this.setLocationError(true);
+        }, this)
       });
     }
   });

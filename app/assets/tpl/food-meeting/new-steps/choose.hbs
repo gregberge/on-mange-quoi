@@ -29,9 +29,16 @@
     {{/each}}
 
     {{#unless collection}}
-    <p class="loader">
-      <i class="icon-spinner icon-spin icon-4x"></i>
-    </p>
+      {{#if locationError}}
+        <div class="alert alert-error" style="text-align: center">
+          <p>Erreur lors de localisation</p>
+          <button class="btn retry"><i class="icon-refresh"></i> Réessayer</button>
+        </div>
+      {{else}}
+        <div class="loader">
+          <i class="icon-spinner icon-spin"></i> Localisation en cours...
+        </div>
+      {{/if}}
     {{/unless}}
   </div>
 

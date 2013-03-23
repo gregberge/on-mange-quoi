@@ -10,7 +10,9 @@ exports = module.exports = {
     foursquare.exploreVenues(req.query,
       function (error, venues) {
         if (error) {
-          res.send({error: true});
+          res
+          .status(400)
+          .send({error: true});
         }
         else {
           res.send(venues.response.groups[0].items);
