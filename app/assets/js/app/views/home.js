@@ -13,7 +13,7 @@ function (
     template: template,
 
     events: {
-      'click .btn': 'onClickButtonCreate'
+      'click .new': 'onClickButtonCreate'
     },
 
     onClickButtonCreate: function (event) {
