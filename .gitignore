@@ -1,8 +1,3 @@
-# npm
 /node_modules
-
-# bower
-/components
-
-# build
-/public/assets
+/bower_components
+/public
